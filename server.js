@@ -5,6 +5,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var logger = require('morgan');
+var PORT = process.env.PORT || 3000;
 
 //Article and Note models
 var Note = require('./models/note.js');
@@ -30,9 +31,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('public'));
 
 //Database Config with Mongoose
-mongoose.connect("mongodb://localhost/NewsScraper", {
-    useMongoClient: true
-});
+mongoose.connect("mongodb://heroku_cvb597bp:rmtusmnj7f2amua331o536t1r1@ds159493.mlab.com:59493/heroku_cvb597bp");
 var db = mongoose.connection;
 
 //Mongoose Errors
@@ -134,6 +133,6 @@ app.post('/articles/:id', function(req, res){
 
 
 // Listen on port 3000
-app.listen(3000, function() {
+app.listen(PORT, function() {
   console.log("App Running on Port 3000");
 });
